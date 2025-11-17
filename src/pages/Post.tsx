@@ -54,36 +54,61 @@ export default function Post() {
 
   return (
     <div className="p-6">
-      <form>
+      <form
+        onSubmit={handleSavePost}
+        className="bg-white shadow-lg rounded-xl p-6 space-y-4 border"
+      >
+        <h2 className="text-xl font-semibold mb-2">Create New Post</h2>
+
         <input
           type="text"
-          placeholder="title"
+          placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          className="w-full border rounded-lg p-2 focus:ring focus:ring-blue-300"
         />
-        <input
-          type="text"
-          placeholder="content"
+
+        <textarea
+          placeholder="Content"
           value={content}
           onChange={(e) => setContent(e.target.value)}
+          className="w-full border rounded-lg p-2 h-24 focus:ring focus:ring-blue-300"
         />
+
         <input
           type="text"
-          placeholder="tags"
+          placeholder="Tags (comma separated)"
           value={tags}
           onChange={(e) => setTags(e.target.value)}
+          className="w-full border rounded-lg p-2 focus:ring focus:ring-blue-300"
         />
-        <input type="file" accept="image/*" onChange={handleImageChange} />
+
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleImageChange}
+          className="w-full border p-2 rounded-lg"
+        />
+
         {preview && (
-          <div>
-            <img src={preview} />
+          <div className="w-full mt-3">
+            <img
+              src={preview}
+              className="w-full h-48 object-cover rounded-lg border"
+            />
           </div>
         )}
-        <button onClick={handleSavePost}>Save</button>
+
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+        >
+          Save Post
+        </button>
       </form>
 
       <h2 className="text-2xl font-bold mb-6 text-center">All Post</h2>
-      <div className="grid grid-cols-1 gap-6">
+      <div className="grid grid-cols-3 gap-6">
         {post.map((p: any, index) => (
           <div
             key={index}

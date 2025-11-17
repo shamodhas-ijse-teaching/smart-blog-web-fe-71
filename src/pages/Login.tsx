@@ -26,7 +26,9 @@ export default function Login() {
         alert("Login fail")
         return
       }
+      
       await localStorage.setItem("accessToken", res.data.accessToken)
+      await localStorage.setItem("refreshToken", res.data.refreshToken)
 
       // import { getMyDetails, login } from "../services/auth"
       const detail = await getMyDetails()
